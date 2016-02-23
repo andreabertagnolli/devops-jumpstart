@@ -1,0 +1,7 @@
+name 'blog'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures blog'
+long_description 'Installs/Configures blog'
+version '0.1.0'
