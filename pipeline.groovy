@@ -1,5 +1,5 @@
 node {
-  stage "Commit"
+  stage name: "Commit"
 
   def WORKSPACE = pwd();
 
@@ -9,16 +9,16 @@ node {
 
   sh "bundle exec rake spec"
 
-  stage "Acceptance"
+  stage name: "Acceptance", concurrency: 1
 
   sh "cp -af /vagrant/. \"${WORKSPACE}/\""
 
   sh "cap testing deploy"
 
-  sh "bunlde install"
+  sh "bundle install"
   sh "bundle exec rake features BLOG_HOST=http://testing"
 
-  stage "Production"
+  stage name: "Production", concurrency: 1
 
   sh "cp -af /vagrant/. \"${WORKSPACE}/\""
   sh "cap production deploy"
