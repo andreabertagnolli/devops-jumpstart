@@ -6,3 +6,5 @@ long_description 'Installs/Configures blog'
 version '0.1.0'
 
 depends 'apt'
+depends 'mysql2_chef_gem'
+depends 'database'
