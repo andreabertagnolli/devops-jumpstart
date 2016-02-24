@@ -41,11 +41,26 @@ Vagrant.configure(2) do |config|
     end
   end
 
+  config.vm.define :production do |production|
+
+    production.vm.provider "docker" do |docker|
+      docker.name = "production"
+    end
+
+    production.vm.hostname = "production"
+    production.vm.network :forwarded_port, guest: 80, host: 11000
+
+    production.vm.provision :chef_solo, install: false do |chef|
+      chef.add_recipe "blog::default"
+    end
+  end
+
   config.vm.define :ci do |ci|
 
     ci.vm.provider "docker" do |docker|
       docker.name = "ci"
       docker.link "testing:testing"
+      docker.link "production:production"
     end
 
     ci.vm.hostname = "ci"
