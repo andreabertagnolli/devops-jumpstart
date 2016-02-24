@@ -32,4 +32,4 @@ namespace :deploy do
   before :updated, :stop_server
   after :updated, :migrate_db
   after :finished, :start_server
-endw
+end
